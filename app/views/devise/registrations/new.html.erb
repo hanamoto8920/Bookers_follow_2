@@ -1,0 +1,28 @@
+<!--アカウント作成ページ-->
+
+
+<!--エラー文章部分-->
+<% if @user.errors.any? %>
+  <h2><%= @user.errors.count %>error</h2>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<!--アカウント登録部分-->
+<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+  <p>Name</p>
+  <%= f.text_field :name %>
+  <P>Email</P>
+  <%= f.email_field :email %>
+  <p>Password(6 characters minimum)</p>
+  <%= f.password_field :password %>
+  <p>Password confirmation</p>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit "Sign up", class: "btn btn-success"%>
+<% end %>
+
+<%= link_to "login", new_user_session_path, class: "btn btn-info active" %>

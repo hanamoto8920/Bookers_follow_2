@@ -1,0 +1,25 @@
+
+
+<!--エラー文章部分-->
+<% if @user.errors.any? %>
+  <h2><%= @user.errors.count %>error</h2>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
+<!--ユーザー情報編集ページ-->
+<h1>User info</h1>
+<%= form_with model:@user, local:true do |f| %>
+  <h2>名前</h2>
+  <%= f.text_field :name %>
+  <h2>画像</h2>
+  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+  <h2>自己紹介文</h2>
+  <%= f.text_area :introduction %>
+  <%= f.submit "編集する" %>
+<% end %>

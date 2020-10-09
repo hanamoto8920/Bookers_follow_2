@@ -1,0 +1,56 @@
+<!--ホームページ（HOME）-->
+
+
+<!--成功文-->
+<div class="notice">
+<%= notice %>
+</div>
+
+<!--エラー文章部分-->
+<% if @book.errors.any? %>
+  <h2><%= @book.errors.count %>error</h2>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <!--ユーザー情報部分-->
+       <%= render "user", user: @user %>
+       <!--フォーム部分-->
+       <%= render "books/form", book: @book %>
+    </div>
+
+
+    <div class="col-xs-9">
+      <!--一覧部分-->
+      <h1>Books</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @books.each do |book| %>
+            <td>
+              <%= link_to user_path(@user.id) do %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size: "60x60" %>
+              <% end %>
+            </td>
+            <td><%=  link_to book.title, book_path(book.id) %></td>
+            <td><%=  book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

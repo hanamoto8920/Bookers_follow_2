@@ -1,0 +1,26 @@
+<!--マイページ表示部分-->
+<h1>User info</h1>
+<%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", size: '60x60' %>
+<table class="table">
+  <tr>
+    <th>名前</th>
+    <th><%= user.name %></th>
+    <th></th>
+  </tr>
+  <tr>
+    <th>自己紹介</th>
+    <th><%= user.introduction %></th>
+    <th></th>
+  </tr>
+  <tr>
+    <th>フォロー数</th>
+    <th><%= user.follower.count %></th>
+    <th></th>
+  </tr>
+  <tr>
+    <th>フォロワー数</th>
+    <th><%= user.followed.count %></th>
+    <th></th>
+  </tr>
+</table>
+<button type="button" class="btn btn-default" aria-label="Left Align"><%= link_to '', edit_user_path(current_user.id), class: "glyphicon glyphicon-wrench" %></button>

@@ -1,0 +1,11 @@
+<!--エラー文章部分-->
+<div class="error">
+    <% if book.errors.any? %>
+        <h2><%= book.errors.count %>件のエラーが発生しました。</h2>
+        <ul>
+            <% book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
